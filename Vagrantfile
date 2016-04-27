@@ -76,6 +76,5 @@ Vagrant.configure(2) do |config|
     salt.colorize = true
     salt.verbose = true
   end
-  config.vm.provision "shell", path: "scripts/testinfra.sh"
 
 end

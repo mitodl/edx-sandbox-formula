@@ -1,4 +1,4 @@
-{% from "edx-sandbox/map.jinja" import edx-sandbox, edx-sandbox_config with context %}
+{% from "edx-sandbox/map.jinja" import edx_sandbox, edx_sandbox_config with context %}
 
 include:
   - edx-sandbox
