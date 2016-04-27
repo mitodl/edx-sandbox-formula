@@ -1,0 +1,9 @@
+name: edx-sandbox
+os: Ubuntu
+os_family: Debian
+version: 201604
+release: 1
+summary: SaltStack Formula for building an edX sandbox using edX configuration.
+description: SaltStack Formula for building an edX sandbox using edX configuration.
+top_level_dir: edx-sandbox
+recommended: 

@@ -1,0 +1,6 @@
+edx-sandbox:
+  lookup:
+    pkg: myedx-sandbox
+    conf_file: /usr/local/etc/edx-sandbox/edx-sandbox.conf
+  config:
+    key: othervalue
