@@ -18,4 +18,5 @@ base:
 echo "\
 base:
   '*':
-    - edx-sandbox" | sudo tee /srv/salt/top.sls
+    - edx-sandbox
+    - edx-sandbox.tests" | sudo tee /srv/salt/top.sls
