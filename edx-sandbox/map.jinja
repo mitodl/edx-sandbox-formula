@@ -4,10 +4,19 @@
           'git',
           'libmysqlclient-dev',
           'python2.7',
-          'python-dev'
+          'python-dev',
+          'python-pip'
         ],
         'repo_path': '/tmp/configuration',
         'conf_file': '/etc/edx-sandbox/edx-sandbox.conf',
+        'ansible_env_config': {
+          'SANDBOX_NAME': 'test-sandbox',
+          'SANDBOX_ZONE': 'd.mitx.mit.edu',
+          'EDX_REMOTE': 'https://github.com/edx/edx-platform.git',
+          'EDX_BRANCH': 'master',
+          'SSL_CERTIFICATE_PATH': 'secrets/tls/d.mitx-wildcard-cert.pem',
+          'SSL_KEY_PATH': 'secrets/tls/d.mitx-wildcard-key.pem'
+        },
         'config': {
             'key': 'value',
         },

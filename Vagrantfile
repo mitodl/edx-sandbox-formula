@@ -70,7 +70,7 @@ Vagrant.configure(2) do |config|
   # SHELL
   config.vm.provision "shell", path: "scripts/vagrant_setup.sh"
   config.vm.provision "shell", inline: "sudo apt-get install -y python-pip"
-  config.vm.provision "shell", inline: "sudo pip install -U six gitpython testinfra"
+  config.vm.provision "shell", inline: "sudo pip install -U six gitpython git+https://github.com/mitodl/testinfra@python_ruby_package#egg=testinfra"
   config.vm.provision :salt do |salt|
     salt.minion_config = "minion.conf"
     salt.bootstrap_options = '-U -Z'
