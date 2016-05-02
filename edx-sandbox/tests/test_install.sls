@@ -17,7 +17,7 @@ test_edx_configuration_pip_requirements:
 
 test_ansible_config_placed:
   testinfra.file:
-    - name: {{ edx_sandbox.repo_path }}/playbooks/ansible_env_config.yaml
+    - name: {{ edx_sandbox.conf_file }}
     - is_file: True
     - contains:
         parameter: {{ edx_sandbox.ansible_env_config.keys()[0] }}
