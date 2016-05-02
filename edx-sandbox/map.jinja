@@ -1,14 +1,15 @@
-{% set edx-sandbox = salt['grains.filter_by']({
+{% set edx_sandbox = salt['grains.filter_by']({
     'default': {
-        'pkg': 'edx-sandbox',
-        'service': 'edx-sandbox',
+        'pkgs': [
+          'git',
+          'libmysqlclient-dev',
+          'python2.7',
+          'python-dev'
+        ],
+        'repo_path': '/tmp/configuration',
         'conf_file': '/etc/edx-sandbox/edx-sandbox.conf',
         'config': {
             'key': 'value',
         },
     },
-    'Debian': {
-    },
-    'RedHat': {
-    },
-}, grain='os_family', merge=salt['pillar.get']('edx-sandbox:lookup'), base='default') %}
+}, grain='os_family', merge=salt['pillar.get']('edx_sandbox:lookup'), base='default') %}
