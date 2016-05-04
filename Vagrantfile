@@ -72,9 +72,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", path: "scripts/vagrant_setup.sh"
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y git python
-    sudo easy_install pip
-    sudo pip install -U six gitpython git+https://github.com/mitodl/testinfra@python_ruby_package#egg=testinfra
+    sudo apt-get install -y git python python-pip
+    sudo pip install -U pip six gitpython git+https://github.com/mitodl/testinfra@python_ruby_package#egg=testinfra
   SHELL
   config.vm.provision :salt do |salt|
     salt.minion_config = "minion.conf"
