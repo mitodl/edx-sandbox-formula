@@ -13,6 +13,7 @@ test_cloned_configuration:
 test_edx_configuration_pip_requirements:
   testinfra.python_package:
     - name: ansible
+    - pip_path: {{ edx_sandbox.venv_path }}/bin/pip
     - is_installed: True
 
 test_ansible_config_placed:

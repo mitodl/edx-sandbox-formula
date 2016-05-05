@@ -48,6 +48,17 @@ place_sandbox_ansible_configuration:
       ansible_env_config: {{ edx_sandbox.ansible_env_config }}
     - makedirs: True
 
+{% if edx_sandbox.generate_certificate %}
+generate_self_signed_certificate:
+  module.run: # TODO: Add replace
+    - name: tls.create_self_signed_cert
+    - CN: {{ edx_sandbox.ansible_env_config.TLS_KEY_NAME }}
+    - require_in:
+      - cmd: run_ansible
+{% else %}
+  #TODO: Decrypt and write GPG certificates.
+{% endif %}
+
 run_ansible:
   cmd.script:
     - name: {{ edx_sandbox.data_path }}/run_ansible.sh
