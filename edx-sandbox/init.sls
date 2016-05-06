@@ -50,13 +50,24 @@ place_sandbox_ansible_configuration:
 
 {% if edx_sandbox.generate_certificate %}
 generate_self_signed_certificate:
-  module.run: # TODO: Add replace
+  module.run:
     - name: tls.create_self_signed_cert
     - CN: {{ edx_sandbox.ansible_env_config.TLS_KEY_NAME }}
+    - replace: True
     - require_in:
       - cmd: run_ansible
 {% else %}
-  #TODO: Decrypt and write GPG certificates.
+{%
+  set key_path = '{}/{}'.format(
+      edx_sandbox.ansible_env_config.TLS_LOCATION,
+      edx_sandbox.ansible_env_config.TLS_KEY_NAME
+%}
+{% for ext in ['crt', 'key'] %}
+place_tls_{{ ext }}_file:
+  file.managed:
+    - name: {{ key_path }}.{{ ext }}
+    - contents: {{ edx_sandbox['edx_tls_{}'.format(ext)] }}
+{% endfor %}
 {% endif %}
 
 run_ansible:

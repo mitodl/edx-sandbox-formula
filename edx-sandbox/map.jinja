@@ -21,6 +21,7 @@
           'EDX_REMOTE': 'https://github.com/edx/edx-platform.git',
           'EDX_BRANCH': 'master',
 
+          'TLS_LOCATION': '/etc/pki/tls/certs',
           'TLS_KEY_NAME': 'edx-ssl-cert',
 
           'ENABLE_HTTP_AUTH': False,
@@ -31,6 +32,6 @@
         'generate_certificate': True,
 
         'edx_tls_key': '',
-        'edx_tls_pem': '',
+        'edx_tls_crt': '',
     },
 }, grain='os_family', merge=salt['pillar.get']('edx_sandbox:lookup'), base='default') %}
