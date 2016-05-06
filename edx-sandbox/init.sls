@@ -59,14 +59,20 @@ generate_self_signed_certificate:
 {% else %}
 {%
   set key_path = '{}/{}'.format(
-      edx_sandbox.ansible_env_config.TLS_LOCATION,
-      edx_sandbox.ansible_env_config.TLS_KEY_NAME
+    edx_sandbox.ansible_env_config.TLS_LOCATION,
+    edx_sandbox.ansible_env_config.TLS_KEY_NAME
+  )
 %}
 {% for ext in ['crt', 'key'] %}
 place_tls_{{ ext }}_file:
   file.managed:
     - name: {{ key_path }}.{{ ext }}
     - contents: {{ edx_sandbox['edx_tls_{}'.format(ext)] }}
+    - user: root
+    - group: root
+    - mode: 600
+    - require_in:
+      - cmd: run_ansible
 {% endfor %}
 {% endif %}
 

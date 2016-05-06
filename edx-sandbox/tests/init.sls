@@ -1,2 +1,4 @@
 include:
-  - .test_install
+  - .test_packages
+  - .test_config
+  - .test_edx
