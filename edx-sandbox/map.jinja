@@ -4,12 +4,34 @@
           'git',
           'libmysqlclient-dev',
           'python2.7',
-          'python-dev'
+          'python-dev',
+          'python-pip',
+          'python-virtualenv',
         ],
-        'repo_path': '/tmp/configuration',
-        'conf_file': '/etc/edx-sandbox/edx-sandbox.conf',
-        'config': {
-            'key': 'value',
+
+        'data_path': '/tmp/edx_sandbox',
+        'venv_path': '/tmp/edx_sandbox/venv',
+        'repo_path': '/tmp/edx_sandbox/configuration',
+        'conf_file': '/tmp/edx_sandbox/edx-sandbox.conf',
+
+        'ansible_env_config': {
+          'SANDBOX_NAME': 'test-sandbox',
+          'SANDBOX_ZONE': 'd.mitx.mit.edu',
+
+          'EDX_REMOTE': 'https://github.com/edx/edx-platform.git',
+          'EDX_BRANCH': 'master',
+
+          'TLS_LOCATION': '/etc/pki/tls/certs',
+          'TLS_KEY_NAME': 'edx-ssl-cert',
+
+          'ENABLE_HTTP_AUTH': False,
+          'HTTP_USERNAME': 'edx',
+          'HTTP_PASSWORD': 'edx',
         },
+
+        'generate_certificate': True,
+
+        'edx_tls_key': '',
+        'edx_tls_crt': '',
     },
 }, grain='os_family', merge=salt['pillar.get']('edx_sandbox:lookup'), base='default') %}

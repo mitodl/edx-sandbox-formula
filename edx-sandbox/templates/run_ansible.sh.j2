@@ -1,0 +1,23 @@
+{% from "edx-sandbox/map.jinja" import edx_sandbox with context %}
+#!/bin/bash
+
+set -x
+
+# Checkout the Ansible submodules
+
+cd {{ edx_sandbox.venv_path }}/src/ansible/
+git submodule init
+git submodule update
+
+# Source the virtualenv and ansible dev environment script
+
+source {{ edx_sandbox.venv_path }}/bin/activate
+source {{ edx_sandbox.venv_path }}/src/ansible/hacking/env-setup
+
+# Run ansible
+
+cd {{ edx_sandbox.repo_path }}/playbooks
+ansible-playbook -c local -i localhost, \
+    edx_sandbox.yml \
+    --extra-vars @{{ edx_sandbox.conf_file }} \
+    2>&1 | tee {{ edx_sandbox.data_path }}/ansible-log.txt
